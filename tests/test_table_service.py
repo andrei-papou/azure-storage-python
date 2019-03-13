@@ -1,6 +1,6 @@
 import asyncio
 import unittest
-from azure.storage.table import TableService, Entity
+from azure_async.table import TableService, Entity
 from tests import ACCOUNT_KEY, ACCOUNT_NAME
 
 

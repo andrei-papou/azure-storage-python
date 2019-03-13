@@ -1,6 +1,6 @@
 import asyncio
 import unittest
-from azure.storage.blob import AppendBlobService, BlobPermissions
+from azure_async.blob import AppendBlobService
 from tests import ACCOUNT_NAME, ACCOUNT_KEY
 
 import logging
@@ -8,8 +8,6 @@ logging.basicConfig(format='%(asctime)s %(name)-20s %(levelname)-5s %(message)s'
 
 
 TEST_CONTAINER_PREFIX = 'tests'
-
-
 
 
 class TestContainers(unittest.TestCase):

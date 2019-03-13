@@ -1,6 +1,6 @@
 import asyncio
 import unittest
-from azure.storage.blob import BlockBlobService, BlobPermissions
+from azure_async.blob import BlockBlobService, BlobPermissions
 from tests import ACCOUNT_KEY, ACCOUNT_NAME
 
 import logging

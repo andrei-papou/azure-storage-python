@@ -1,6 +1,6 @@
 import asyncio
 import unittest
-from azure.storage.queue import QueueService
+from azure_async.queue import QueueService
 from tests import ACCOUNT_KEY, ACCOUNT_NAME
 
 import logging
