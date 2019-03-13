@@ -5,7 +5,7 @@ with open('README.md', 'r') as f:
     long_description = f.read()
 
 setuptools.setup(
-    name='azure-azure_async-python',
+    name='azure-storage-python',
     version='0.0.1',
     author='Andrei Papou',
     author_email='andrei.papou@itechart-group.com',
