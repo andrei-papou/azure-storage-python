@@ -1921,19 +1921,20 @@ class BaseBlobService(StorageClient):
             # Send a context object to make sure we always retry to the initial location
             operation_context = _OperationContext(location_lock=True)
             try:
-                blob = await self._get_blob(container_name,
-                                      blob_name,
-                                      snapshot,
-                                      start_range=initial_request_start,
-                                      end_range=initial_request_end,
-                                      validate_content=validate_content,
-                                      lease_id=lease_id,
-                                      if_modified_since=if_modified_since,
-                                      if_unmodified_since=if_unmodified_since,
-                                      if_match=if_match,
-                                      if_none_match=if_none_match,
-                                      timeout=timeout,
-                                      _context=operation_context)
+                blob = await self._get_blob(
+                    container_name,
+                    blob_name,
+                    snapshot,
+                    start_range=initial_request_start,
+                    end_range=initial_request_end,
+                    validate_content=validate_content,
+                    lease_id=lease_id,
+                    if_modified_since=if_modified_since,
+                    if_unmodified_since=if_unmodified_since,
+                    if_match=if_match,
+                    if_none_match=if_none_match,
+                    timeout=timeout,
+                    _context=operation_context)
 
                 # Parse the total blob size and adjust the download size if ranges 
                 # were specified
@@ -1950,17 +1951,19 @@ class BaseBlobService(StorageClient):
                     # Get range will fail on an empty blob. If the user did not 
                     # request a range, do a regular get request in order to get 
                     # any properties.
-                    blob = self._get_blob(container_name,
-                                          blob_name,
-                                          snapshot,
-                                          validate_content=validate_content,
-                                          lease_id=lease_id,
-                                          if_modified_since=if_modified_since,
-                                          if_unmodified_since=if_unmodified_since,
-                                          if_match=if_match,
-                                          if_none_match=if_none_match,
-                                          timeout=timeout,
-                                          _context=operation_context)
+                    blob = await self._get_blob(
+                        container_name,
+                        blob_name,
+                        snapshot,
+                        validate_content=validate_content,
+                        lease_id=lease_id,
+                        if_modified_since=if_modified_since,
+                        if_unmodified_since=if_unmodified_since,
+                        if_match=if_match,
+                        if_none_match=if_none_match,
+                        timeout=timeout,
+                        _context=operation_context
+                    )
 
                     # Set the download size to empty
                     download_size = 0
