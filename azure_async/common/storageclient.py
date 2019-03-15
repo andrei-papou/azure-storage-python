@@ -180,6 +180,12 @@ class StorageClient(object):
     def request_session(self, value):
         self._httpclient.session = value
 
+    async def __aenter__(self):
+        return self
+
+    async def __aexit__(self, exc_type, exc_val, exc_tb):
+        await self.request_session.close()
+
     def set_proxy(self, host, port, user=None, password=None):
         '''
         Sets the proxy server host and port for the HTTP CONNECT Tunnelling.

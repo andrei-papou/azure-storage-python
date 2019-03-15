@@ -12,7 +12,7 @@ setuptools.setup(
     description='Async Python client for Azure SDK',
     long_description=long_description,
     long_description_content_type='text/markdown',
-    url='https://github.com/andrei-papou/azure-azure_async-python',
+    url='https://github.com/andrei-papou/azure-storage-python',
     packages=setuptools.find_packages(),
     install_requires=[
         'aiodns==1.1.1',
