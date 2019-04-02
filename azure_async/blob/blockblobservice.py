@@ -326,7 +326,8 @@ class BlockBlobService(BaseBlobService):
             self, container_name, blob_name, file_path, content_settings=None,
             metadata=None, validate_content=False, progress_callback=None,
             max_connections=2, lease_id=None, if_modified_since=None,
-            if_unmodified_since=None, if_match=None, if_none_match=None, timeout=None):
+            if_unmodified_since=None, if_match=None, if_none_match=None, timeout=None,
+            upload_in_chunks=False, chunk_size=None):
         '''
         Creates a new blob from a file path, or updates the content of an
         existing blob, with automatic chunking and progress notifications.
@@ -410,7 +411,9 @@ class BlockBlobService(BaseBlobService):
                 if_unmodified_since=if_unmodified_since,
                 if_match=if_match,
                 if_none_match=if_none_match,
-                timeout=timeout)
+                timeout=timeout,
+                upload_in_chunks=upload_in_chunks,
+                chunk_size=chunk_size)
 
     async def create_blob_from_stream(
             self, container_name, blob_name, stream, count=None,
