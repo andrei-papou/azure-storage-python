@@ -417,7 +417,8 @@ class BlockBlobService(BaseBlobService):
             content_settings=None, metadata=None, validate_content=False,
             progress_callback=None, max_connections=2, lease_id=None,
             if_modified_since=None, if_unmodified_since=None, if_match=None,
-            if_none_match=None, timeout=None, use_byte_buffer=False):
+            if_none_match=None, timeout=None, use_byte_buffer=False,
+            upload_in_chunks=False, chunk_size=None):
         '''
         Creates a new blob from a file/stream, or updates the content of
         an existing blob, with automatic chunking and progress
@@ -512,7 +513,7 @@ class BlockBlobService(BaseBlobService):
             adjusted_count += (16 - (count % 16))
 
         # Do single put if the size is smaller than MAX_SINGLE_PUT_SIZE
-        if adjusted_count is not None and (adjusted_count < self.MAX_SINGLE_PUT_SIZE):
+        if adjusted_count is not None and (adjusted_count < self.MAX_SINGLE_PUT_SIZE) and not upload_in_chunks:
             if progress_callback:
                 progress_callback(0, count)
 
@@ -543,6 +544,7 @@ class BlockBlobService(BaseBlobService):
                                        hasattr(stream, 'seekable') and not stream.seekable() or \
                                        not hasattr(stream, 'seek') or not hasattr(stream, 'tell')
 
+            block_size = chunk_size or self.MAX_BLOCK_SIZE
             if use_original_upload_path:
                 if self.key_encryption_key:
                     cek, iv, encryption_data = _generate_blob_encryption_data(self.key_encryption_key)
@@ -552,7 +554,7 @@ class BlockBlobService(BaseBlobService):
                     container_name=container_name,
                     blob_name=blob_name,
                     blob_size=count,
-                    block_size=self.MAX_BLOCK_SIZE,
+                    block_size=block_size,
                     stream=stream,
                     max_connections=max_connections,
                     progress_callback=progress_callback,
@@ -569,7 +571,7 @@ class BlockBlobService(BaseBlobService):
                     container_name=container_name,
                     blob_name=blob_name,
                     blob_size=count,
-                    block_size=self.MAX_BLOCK_SIZE,
+                    block_size=block_size,
                     stream=stream,
                     max_connections=max_connections,
                     progress_callback=progress_callback,
