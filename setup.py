@@ -34,7 +34,7 @@ setuptools.setup(
         'python-dateutil==2.8.1',
         'PyYAML==5.2',
         'six==1.13.0',
-        'urllib3==1.24.3',
+        'urllib3==1.25.7',
         'vcrpy==3.0.0',
         'wrapt==1.11.2',
         'yarl==1.4.2',
