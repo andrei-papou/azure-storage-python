@@ -18,7 +18,7 @@ setuptools.setup(
         'aiohttp==3.6.2',
         'azure-common==1.1.23',
         'azure-nspkg==3.0.2',
-        'cryptography==2.8',
+        'cryptography==3.2',
         'yarl==1.4.2',
     ],
     classifiers=[
