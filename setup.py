@@ -15,7 +15,7 @@ setuptools.setup(
     url='https://github.com/andrei-papou/azure-storage-python',
     packages=setuptools.find_packages(),
     install_requires=[
-        'aiohttp==3.6.2',
+        'aiohttp==3.8.1',
         'azure-common==1.1.23',
         'azure-nspkg==3.0.2',
         'cryptography==2.8',
